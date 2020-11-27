@@ -141,6 +141,10 @@ export class CanvasRenderer {
     }
 
     renderTextWithLetterSpacing(text: TextBounds, letterSpacing: number) {
+        if (navigator.userAgent.indexOf('Firefox') === -1){
+            // non-Firefox browser add this
+            this.ctx.textBaseline = 'ideographic';
+        }
         if (letterSpacing === 0) {
             this.ctx.fillText(text.text, text.bounds.left, text.bounds.top + text.bounds.height);
         } else {
